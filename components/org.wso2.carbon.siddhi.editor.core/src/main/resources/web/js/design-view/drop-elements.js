@@ -1219,7 +1219,7 @@ define(['require', 'log', 'lodash', 'jquery', 'partition', 'stream', 'query', 'f
                 $(dataObj).popover({
                     trigger: 'focus',
                     placement:'auto',
-                    title: 'Are you sure you want to delete?',
+                    title: 'Confirmation',
                     html: true,
                     content: function () {
                         return $('.pop-over').html();
@@ -1255,6 +1255,16 @@ define(['require', 'log', 'lodash', 'jquery', 'partition', 'stream', 'query', 'f
                             $('#' + newElement[0].id).children().removeClass("selected-element");
                         }
                     });
+                });
+                $(this).keyup(function (e) {
+                    console.log("Inside keyup function");
+                    if (e.which === 27) {
+                        console.log("Inside esc trigger function");
+                        $(dataObj).popover('hide');
+                        $(".overlayed-container ").fadeOut(200);
+                        $('#' + newElement[0].id).removeClass("selected-element");
+                        $('#' + newElement[0].id).children().removeClass("selected-element");
+                    }
                 });
             }
 

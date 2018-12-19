@@ -940,6 +940,7 @@ define(['require', 'log', 'jquery', 'backbone', 'lodash', 'designViewUtils', 'dr
                         $('#' + connectionObject.id).popover({
                             trigger: 'focus',
                             title: 'Are you sure you want to delete?',
+                            placement:'auto',
                             html: true,
                             content: function () {
                                 return $('.pop-over').html();
@@ -973,6 +974,15 @@ define(['require', 'log', 'jquery', 'backbone', 'lodash', 'designViewUtils', 'dr
                                     close_icon_overlay.setVisible(false);
                                 }
                             });
+                        });
+                        $(this).on("keyup", function (e) {
+                            if (e.which === 27) {
+                                $("#" + connectionObject.id).popover('hide');
+                                $(".overlayed-container ").fadeOut(200);
+                                if ($("#" + connectionObject.id).siblings(".popover").length == 0) {
+                                    close_icon_overlay.setVisible(false);
+                                }
+                            }
                         });
                     }
 
